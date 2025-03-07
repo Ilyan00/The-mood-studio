@@ -102,15 +102,18 @@ section {
 
 .sunflower {
   width: 100%;
-  height: 30%;
+  height: 10%;
   display: flex;
   align-items: end;
 }
 .sunflower .flower-container {
   position: relative;
+  display: flex;
+  align-items: end;
   z-index: 100;
   width: 100px;
   height: 100px;
+  color: #000;
 }
 .sunflower img {
   position: absolute;
@@ -145,7 +148,7 @@ section {
 }
 
 .text-container-joy {
-  width: 100%;
+  width: 90%;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -168,7 +171,7 @@ section {
 .paragraph-joy {
   background-color: #d3996b;
   padding: 25px;
-  width: 50%;
+  width: 70%;
   height: 70%;
   display: flex;
   justify-content: center;
