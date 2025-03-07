@@ -95,12 +95,38 @@ function screamerFear() {
     clearTimeout(screamerTimeout);
   }
 }
+
+//Fear Eyeball
+function pupilmouse() {
+  const eye = document.querySelector('.eyeball');
+  const pupil = document.querySelector('.pupil');
+
+  document.addEventListener('mousemove', (e) => {
+    const eyeRect = eye.getBoundingClientRect();
+    const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+    const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+
+    const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+    const distance = Math.min(
+      eyeRect.width / 4,
+      Math.sqrt(Math.pow(e.clientX - eyeCenterX, 2) + Math.pow(e.clientY - eyeCenterY, 2))
+    );
+
+    const pupilX = Math.cos(angle) * distance - 50;
+    const pupilY = Math.sin(angle) * distance;
+
+    pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+  });
+}
+
+
   // Fear
   function checkFearVisibility() {
     if (isSectionVisible("fear-section") && !fearIntervalId) {
       document.body.style.backgroundImage = "url('../img/background/Fear-bg.png')";
       document.body.style.opacity = "1";
       fearIntervalId = true;
+      pupilmouse();
       screamerFear();
     } else if (!isSectionVisible("fear-section") && fearIntervalId) {
       fearIntervalId = null;
