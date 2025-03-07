@@ -76,6 +76,32 @@ document.addEventListener("DOMContentLoaded", () => {
       sunflower.style.top = "30px";
     }
   });
+
+  //Fear Effect
+  let screamerTimeout;
+
+  function screamerFear() {
+    const screamerFear = document.getElementById("screamer");
+    const scarySound = new Audio("./sound/scarysound.mp4");
+
+    if (isSectionVisible("fear-section")) {
+      screamerTimeout = setTimeout(() => {
+        if (isSectionVisible("fear-section")) {
+          screamerFear.style.visibility = "visible";
+          scarySound.play();
+
+          setTimeout(() => {
+            screamerFear.style.visibility = "hidden";
+            screamerFear.style.animation = "none";
+            scarySound.pause();
+            scarySound.currentTime = 0;
+          }, 4000);
+        }
+      }, 6000);
+    } else {
+      clearTimeout(screamerTimeout);
+    }
+  }
   // Fear
   function checkFearVisibility() {
     if (isSectionVisible("fear-section") && !fearIntervalId) {
@@ -83,9 +109,17 @@ document.addEventListener("DOMContentLoaded", () => {
         "url('../img/background/Fear-bg.png')";
       document.body.style.opacity = "1";
       fearIntervalId = true;
+      screamerFear();
     } else if (!isSectionVisible("fear-section") && fearIntervalId) {
       fearIntervalId = null;
       document.body.style.opacity = "0";
+      clearTimeout(screamerTimeout); // Annuler le timeout si on quitte la section
+      const screamerElement = document.getElementById("screamer");
+      screamerElement.style.visibility = "hidden";
+      screamerElement.style.animation = "none";
+      const scarySound = new Audio("./sound/scarysound.mp4");
+      scarySound.pause();
+      scarySound.currentTime = 0;
     }
   }
 
