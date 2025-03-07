@@ -31,6 +31,7 @@ main {
   overflow-x: hidden;
   height: 80vh;
   width: 80vw;
+  z-index: 1;
 }
 
 section {
@@ -213,4 +214,37 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* love Section */
+
+.heart {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  z-index: 1000;
+  top: 100vh;
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+  animation: heart-animation 8s linear infinite, heart-beat 1s linear infinite;
+}
+
+@keyframes heart-animation {
+  0% {
+    top: 100vh;
+  }
+  100% {
+    top: -50vh;
+  }
+}
+@keyframes heart-beat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

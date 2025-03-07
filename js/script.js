@@ -128,6 +128,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function heart_spawn() {
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement("img");
+      heart.className = "heart";
+      heart.src = "./img/heart/heart.svg";
+
+      heart.style.position = "absolute";
+      heart.style.left = `${Math.random() * 80}vw`;
+      heart.style.zIndex = Math.floor(Math.random() * 2) * 2;
+      heart.style.animationDelay = `${Math.random() * 8}s`;
+
+      document.body.appendChild(heart);
+    }
+  }
+
   // Love
   function checkLoveVisibility() {
     if (isSectionVisible("love-section") && !loveIntervalId) {
@@ -135,9 +150,18 @@ document.addEventListener("DOMContentLoaded", () => {
         "url('../img/background/Love-bg.png')";
       document.body.style.opacity = "1";
       loveIntervalId = true;
+      heart_spawn();
     } else if (!isSectionVisible("love-section") && loveIntervalId) {
       loveIntervalId = null;
       document.body.style.opacity = "0";
+      const hearts = document.querySelectorAll(".heart");
+
+      hearts.forEach((heart) => {
+        heart.style.opacity = 0;
+        setTimeout(() => {
+          heart.remove();
+        }, 500);
+      });
     }
   }
 
