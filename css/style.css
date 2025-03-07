@@ -41,6 +41,7 @@ section {
   height: 100%;
   width: 100%;
   background-color: #eac898;
+  z-index: 1
 }
 
 /* butterfly */
@@ -102,4 +103,21 @@ section {
   width: 100%;
   height: 100%;
   background: #d7a6ae;
+}
+
+/* Fear section */
+#screamer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  visibility: hidden;
+}
+.screamer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
 }
