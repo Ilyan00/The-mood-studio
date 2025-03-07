@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     butterfly.style.top = randomTop + "%";
     butterfly.style.left = randomLeft + "%";
+
     butterfly.style.transform = `rotate(${angle}deg)`;
 
     positions[index] = { top: randomTop, left: randomLeft };
@@ -60,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         butterflies.forEach((butterfly, index) =>
           moveButterfly(butterfly, index)
         );
-      }, 2000);
+      }, 5000);
     } else if (!isSectionVisible("joy-section") && joyIntervalId) {
       clearInterval(joyIntervalId);
       joyIntervalId = null;
@@ -69,32 +70,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  const sunflowers = document.querySelectorAll(".flower-container");
+  sunflowers.forEach((sunflower) => {
+    //
+    const scaleY_random = Math.random() + 2;
+    sunflower.style.transform = `scaleY(${scaleY_random}) scaleX(2)`;
+    if (scaleY_random < 2.5) {
+      sunflower.style.top = "0px";
+    } else {
+      sunflower.style.top = "-40px";
+    }
+  });
 
   //Fear Effect
   let screamerTimeout;
 
-function screamerFear() {
-  const screamerFear = document.getElementById("screamer");
-  const scarySound = new Audio("./sound/scarysound.mp4");
-  
-  if (isSectionVisible("fear-section")) {
-    screamerTimeout = setTimeout(() => {
-      if (isSectionVisible("fear-section")) {
-        screamerFear.style.visibility = "visible";
-        scarySound.play();
-        
-        setTimeout(() => {
-          screamerFear.style.visibility = "hidden";
-          screamerFear.style.animation = "none";
-          scarySound.pause();
-          scarySound.currentTime = 0;
-        }, 4000);
-      }
-    }, 6000);
-  } else {
-    clearTimeout(screamerTimeout);
+  function screamerFear() {
+    const screamerFear = document.getElementById("screamer");
+    const scarySound = new Audio("./sound/scarysound.mp4");
+
+    if (isSectionVisible("fear-section")) {
+      screamerTimeout = setTimeout(() => {
+        if (isSectionVisible("fear-section")) {
+          screamerFear.style.visibility = "visible";
+          scarySound.play();
+
+          setTimeout(() => {
+            screamerFear.style.visibility = "hidden";
+            screamerFear.style.animation = "none";
+            scarySound.pause();
+            scarySound.currentTime = 0;
+          }, 4000);
+        }
+      }, 6000);
+    } else {
+      clearTimeout(screamerTimeout);
+    }
   }
-}
+
 
 //Fear Eyeball
 function pupilmouse() {
@@ -117,13 +130,14 @@ function pupilmouse() {
 
     pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
   });
-}
+};
 
 
   // Fear
   function checkFearVisibility() {
     if (isSectionVisible("fear-section") && !fearIntervalId) {
-      document.body.style.backgroundImage = "url('../img/background/Fear-bg.png')";
+      document.body.style.backgroundImage =
+        "url('../img/background/Fear-bg.png')";
       document.body.style.opacity = "1";
       fearIntervalId = true;
       pupilmouse();
@@ -139,8 +153,7 @@ function pupilmouse() {
       scarySound.pause();
       scarySound.currentTime = 0;
     }
-  }
-
+  };
 
   // Love
   function checkLoveVisibility() {
@@ -165,3 +178,4 @@ function pupilmouse() {
     checkLoveVisibility();
   });
 });
+
