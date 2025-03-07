@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sunflowers = document.querySelectorAll(".flower-container");
   sunflowers.forEach((sunflower) => {
     sunflower.style.scale = Math.random() + 0.5;
-    if (sunflower.style.scale <= 0.9) {
+    if (sunflower.style.scale <= 1.2) {
       sunflower.style.top = "30px";
     }
   });
