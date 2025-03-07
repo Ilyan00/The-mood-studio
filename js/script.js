@@ -71,9 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const sunflowers = document.querySelectorAll(".flower-container");
   sunflowers.forEach((sunflower) => {
-    sunflower.style.scale = Math.random() + 0.5;
-    if (sunflower.style.scale <= 1.2) {
-      sunflower.style.top = "30px";
+    //
+    const scaleY_random = Math.random() + 2;
+    sunflower.style.transform = `scaleY(${scaleY_random}) scaleX(2)`;
+    if (scaleY_random < 2.5) {
+      sunflower.style.top = "0px";
+    } else {
+      sunflower.style.top = "-40px";
     }
   });
 
