@@ -60,7 +60,8 @@ section {
   position: absolute;
   width: 100px;
   height: 100px;
-  transition: top 2s linear, left 2s linear, opacity 1s linear;
+  transition: top 5s linear, left 5s linear, opacity 1s linear,
+    transform 0.2s ease;
 }
 .butterfly img {
   position: absolute;
@@ -132,7 +133,7 @@ section {
   left: 50%;
   transform: translate(-50%, -80%);
   transform-origin: 0% -30%;
-  animation: rotate-flower 2s linear infinite;
+  animation: rotate-flower 4s linear infinite;
 }
 .sunflower-face {
   top: 50%;

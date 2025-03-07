@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     butterfly.style.top = randomTop + "%";
     butterfly.style.left = randomLeft + "%";
+
     butterfly.style.transform = `rotate(${angle}deg)`;
 
     positions[index] = { top: randomTop, left: randomLeft };
@@ -60,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         butterflies.forEach((butterfly, index) =>
           moveButterfly(butterfly, index)
         );
-      }, 2000);
+      }, 5000);
     } else if (!isSectionVisible("joy-section") && joyIntervalId) {
       clearInterval(joyIntervalId);
       joyIntervalId = null;
