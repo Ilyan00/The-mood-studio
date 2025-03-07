@@ -108,30 +108,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  //Fear Eyeball
+  function pupilmouse() {
+    const eye = document.querySelector(".eyeball");
+    const pupil = document.querySelector(".pupil");
 
-//Fear Eyeball
-function pupilmouse() {
-  const eye = document.querySelector('.eyeball');
-  const pupil = document.querySelector('.pupil');
+    document.addEventListener("mousemove", (e) => {
+      const eyeRect = eye.getBoundingClientRect();
+      const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+      const eyeCenterY = eyeRect.top + eyeRect.height / 2;
 
-  document.addEventListener('mousemove', (e) => {
-    const eyeRect = eye.getBoundingClientRect();
-    const eyeCenterX = eyeRect.left + eyeRect.width / 2;
-    const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+      const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+      const distance = Math.min(
+        eyeRect.width / 4,
+        Math.sqrt(
+          Math.pow(e.clientX - eyeCenterX, 2) +
+            Math.pow(e.clientY - eyeCenterY, 2)
+        )
+      );
 
-    const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
-    const distance = Math.min(
-      eyeRect.width / 4,
-      Math.sqrt(Math.pow(e.clientX - eyeCenterX, 2) + Math.pow(e.clientY - eyeCenterY, 2))
-    );
+      const pupilX = Math.cos(angle) * distance - 50;
+      const pupilY = Math.sin(angle) * distance;
 
-    const pupilX = Math.cos(angle) * distance - 50;
-    const pupilY = Math.sin(angle) * distance;
-
-    pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
-  });
-};
-
+      pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+    });
+  }
 
   // Fear
   function checkFearVisibility() {
@@ -153,7 +154,7 @@ function pupilmouse() {
       scarySound.pause();
       scarySound.currentTime = 0;
     }
-  };
+  }
 
   function heart_spawn() {
     for (let i = 0; i < 20; i++) {
@@ -171,12 +172,14 @@ function pupilmouse() {
   }
 
   // Love
+  let clicked = false;
   function checkLoveVisibility() {
     if (isSectionVisible("love-section") && !loveIntervalId) {
       document.body.style.backgroundImage =
         "url('../img/background/Love-bg.png')";
       document.body.style.opacity = "1";
       loveIntervalId = true;
+
       heart_spawn();
     } else if (!isSectionVisible("love-section") && loveIntervalId) {
       loveIntervalId = null;
@@ -192,6 +195,19 @@ function pupilmouse() {
     }
   }
 
+  const box = document.getElementById("box");
+  const couvercle = document.getElementById("couvercle");
+  const message = document.getElementById("message");
+  box.addEventListener("click", () => {
+    if (box && couvercle && message && !clicked) {
+      clicked = true;
+      heart_spawn();
+      heart_spawn();
+      couvercle.style.transform = "translate(0%, -100%) rotate(50deg)";
+      message.classList.add("anim-love");
+    }
+  });
+
   checkJoyVisibility();
   checkFearVisibility();
   checkLoveVisibility();
@@ -202,4 +218,3 @@ function pupilmouse() {
     checkLoveVisibility();
   });
 });
-

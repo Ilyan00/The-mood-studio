@@ -188,19 +188,13 @@ section {
 .paragraph-joy:hover {
   color: rgba(255, 255, 255, 100%);
 }
+/* Fear section */
 
 .fear-section {
   width: 100%;
   height: 100%;
   background: #444444;
 }
-.love-section {
-  width: 100%;
-  height: 100%;
-  background: #d7a6ae;
-}
-
-/* Fear section */
 
 .text-container-fear {
   width: 100%;
@@ -239,7 +233,51 @@ section {
   object-fit: cover;
 }
 
+.eyeballmovement {
+  margin: 70px;
+  position: relative;
+  width: 50%;
+  height: 50%;
+}
+
+.eyeball {
+  position: absolute;
+  width: 100%;
+  height: 90%;
+}
+
+.pupil {
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+}
+
+.paragraph-fear {
+  margin-top: 10px;
+  font-size: 20px;
+  width: 100%;
+  padding: 15px;
+  background-color: #2a2a2a;
+  color: rgb(203, 202, 202);
+}
+
 /* love Section */
+.love-section {
+  position: relative;
+  overflow: hidden;
+  padding: 0 50px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  background: #d7a6ae;
+}
 
 .heart {
   position: fixed;
@@ -271,34 +309,98 @@ section {
     transform: scale(1);
   }
 }
-.eyeballmovement {
-  margin: 70px;
-  position: relative;
-  width: 50%;
-  height: 50%;
+
+.text-container-love {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.eyeball {
-  position: absolute;
+.title-container-love {
+  padding: 50px;
   width: 100%;
-  height: 90%;
+  height: 100%;
 }
 
-.pupil {
+.title-container-love h1 {
+  font-size: 80px;
+}
+.title-container-love p {
+  font-size: 35px;
+  font-weight: thin;
+}
+.paragraph-love {
+  background-color: #e9909f;
+  padding: 25px;
+  width: 70%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 50%);
+  transition: color 0.2s linear;
+}
+.box-container {
+  position: relative;
+  width: 0;
+  height: 0;
+  background-color: #000;
+}
+
+.box-love-container {
   position: absolute;
-  width: 20%;
-  height: 20%;
-  top: 40%;
+  top: -25vh;
+  z-index: 50;
+  height: 100px;
+  width: 250px;
+}
+.box-love-container img {
+  position: absolute;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: transform 0.1s ease-out;
+}
+.box-love-container .couvercle-img {
+  z-index: 2;
+  transform: translate(-50%, -55%);
+  transition: transform 2s ease;
+}
+.box-love-container .ruban-img {
+  z-index: 3;
+  transform: translate(100%, 70%);
 }
 
-.paragraph-fear {
-  margin-top: 10px;
-  font-size: 20px;
-  width: 100%;
-  padding: 15px;
-  background-color: #2a2a2a;
-  color: rgb(203, 202, 202);
+.message {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  z-index: 1;
+  font-size: 40px;
+  font-weight: bold;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 2s linear;
+}
+
+.anim-love {
+  animation: anim-love 5s ease-in forwards;
+  animation-delay: 2s;
+  opacity: 1;
+}
+
+@keyframes anim-love {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-25vw);
+    opacity: 0;
+  }
 }
