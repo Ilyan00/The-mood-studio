@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.backgroundImage =
         "url('../img/background/Joy-bg.png')";
       document.body.style.opacity = "1";
+      main.style.scrollbarColor = "#d3996b #eac898";
       butterflies.forEach((butterfly, index) =>
         moveButterfly(butterfly, index)
       );
@@ -82,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Fear
   //Fear Effect
   let screamerTimeout;
 
@@ -90,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const scarySound = new Audio("./sound/scarysound.mp4");
 
     if (isSectionVisible("fear-section")) {
+      main.style.scrollbarColor = "#2a2a2a #444444";
       screamerTimeout = setTimeout(() => {
         if (isSectionVisible("fear-section")) {
           screamerFear.style.visibility = "visible";
@@ -134,7 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Fear
   function checkFearVisibility() {
     if (isSectionVisible("fear-section") && !fearIntervalId) {
       document.body.style.backgroundImage =
@@ -156,6 +158,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Love
+
+  const box = document.getElementById("box");
+  const couvercle = document.getElementById("couvercle");
+  const message = document.getElementById("message");
+  let clicked = false;
+
   function heart_spawn() {
     for (let i = 0; i < 20; i++) {
       const heart = document.createElement("img");
@@ -171,21 +180,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Love
-  let clicked = false;
   function checkLoveVisibility() {
     if (isSectionVisible("love-section") && !loveIntervalId) {
       document.body.style.backgroundImage =
         "url('../img/background/Love-bg.png')";
       document.body.style.opacity = "1";
+      main.style.scrollbarColor = "#e9909f #d7a6ae";
       loveIntervalId = true;
 
       heart_spawn();
     } else if (!isSectionVisible("love-section") && loveIntervalId) {
       loveIntervalId = null;
       document.body.style.opacity = "0";
-      const hearts = document.querySelectorAll(".heart");
 
+      couvercle.style.transform = "translate(-50%, -55%)";
+      message.classList.remove("anim-love");
+      clicked = false;
+
+      const hearts = document.querySelectorAll(".heart");
       hearts.forEach((heart) => {
         heart.style.opacity = 0;
         setTimeout(() => {
@@ -195,9 +207,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const box = document.getElementById("box");
-  const couvercle = document.getElementById("couvercle");
-  const message = document.getElementById("message");
   box.addEventListener("click", () => {
     if (box && couvercle && message && !clicked) {
       clicked = true;
