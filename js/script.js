@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Joy
   const butterflies = document.querySelectorAll(".butterfly");
+  let homeIntervalId = null;
   let joyIntervalId = null;
   let fearIntervalId = null;
   let loveIntervalId = null;
@@ -46,6 +47,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const rect = section.getBoundingClientRect();
     return rect.top >= 0 && rect.bottom <= window.innerHeight;
   }
+
+  function checkHomepageVisibility() {
+    if (isSectionVisible("homepage-section") && !homeIntervalId) {
+      document.body.style.backgroundImage =
+        "url('../img/background/Home-bg.png')";
+      document.body.style.opacity = "1";
+      main.style.scrollbarColor = "#d3996b #eac898";
+    } else if (!isSectionVisible("homepage-section") && homeIntervalId) {
+      clearInterval(homeIntervalId);
+      homeIntervalId = null;
+  
+      // Vérifie si une autre section est visible avant de remettre en blanc
+      if (
+        !isSectionVisible("joy-section") &&
+        !isSectionVisible("fear-section") &&
+        !isSectionVisible("love-section")
+      ) {
+        document.body.style.backgroundColor = "white";
+      }
+    }
+  }
+  
 
   // Joy
   function checkJoyVisibility() {
@@ -216,14 +239,16 @@ document.addEventListener("DOMContentLoaded", () => {
       message.classList.add("anim-love");
     }
   });
-
+  
   checkJoyVisibility();
   checkFearVisibility();
   checkLoveVisibility();
+  checkHomepageVisibility();
 
   main.addEventListener("scroll", () => {
     checkJoyVisibility();
     checkFearVisibility();
     checkLoveVisibility();
+    checkHomepageVisibility();
   });
 });
