@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clicked = true;
       heart_spawn();
       heart_spawn();
-      couvercle.style.transform = "translate(0%, -100%) rotate(50deg)";
+      couvercle.style.transform = "translate(20%, -100%) rotate(80deg)";
       message.classList.add("anim-love");
     }
   });
