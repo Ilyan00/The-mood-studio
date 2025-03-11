@@ -74,20 +74,20 @@ section {
 .title-container-home h1 {
   font-size: 80px;
   opacity: 0;
-  transition: opacity 2s ease;
+  transition: opacity 2s ease-out;
 }
 
 .title-container-home p {
   font-size: 30px;
   opacity: 0;
-  transition: opacity 2s ease;
+  transition: opacity 2s ease-out;
 }
 
 .logo {
   opacity: 0;
   width: 20rem;
   margin-top: 50px;
-  transition: opacity 2s ease;
+  transition: opacity 2s ease-out;
 }
 
 /* Joy section */
