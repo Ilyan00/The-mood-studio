@@ -19,7 +19,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #F9E2C1;
+  background-color: #f9e2c1;
   transition: opacity 1s linear;
 }
 
@@ -47,7 +47,7 @@ section {
   padding: 0 50px;
   height: 100%;
   width: 100%;
-  background-color: #D3996B;
+  background-color: #d3996b;
   z-index: 1;
   display: flex;
   justify-content: center;
@@ -73,15 +73,21 @@ section {
 
 .title-container-home h1 {
   font-size: 80px;
+  opacity: 0;
+  transition: opacity 2s ease;
 }
 
 .title-container-home p {
   font-size: 30px;
+  opacity: 0;
+  transition: opacity 2s ease;
 }
 
 .logo {
+  opacity: 0;
   width: 20rem;
   margin-top: 50px;
+  transition: opacity 2s ease;
 }
 
 /* Joy section */
@@ -97,7 +103,6 @@ section {
   flex-direction: column;
   justify-content: space-between;
 }
-
 
 /* butterfly */
 

@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // load
+  const home_title = document.getElementById("home_title");
+  const home_paragraph = document.getElementById("home_paragraph");
+  const home_logo = document.getElementById("home_logo");
+
+  window.addEventListener("load", () => {
+    home_title.style.opacity = "1";
+    home_paragraph.style.opacity = "1";
+    home_logo.style.opacity = "1";
+  });
+
   const main = document.querySelector("main");
 
   // Joy
@@ -57,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (!isSectionVisible("homepage-section") && homeIntervalId) {
       clearInterval(homeIntervalId);
       homeIntervalId = null;
-  
+
       // Vérifie si une autre section est visible avant de remettre en blanc
       if (
         !isSectionVisible("joy-section") &&
@@ -68,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-  
 
   // Joy
   function checkJoyVisibility() {
@@ -239,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
       message.classList.add("anim-love");
     }
   });
-  
+
   checkJoyVisibility();
   checkFearVisibility();
   checkLoveVisibility();
